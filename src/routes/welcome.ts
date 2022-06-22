@@ -8,4 +8,4 @@ welcome.get('/',(req:Request ,res:Response, netx:NextFunction) =>{
 });
 
 
-export { welcome };
+export default welcome;
