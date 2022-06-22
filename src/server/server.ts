@@ -1,9 +1,9 @@
 import express from "express";
-import bearerAuthenticationMiddleware from "../middlewares/bearer-authentication.middleware";
 import erroHendler from "../middlewares/error-handler.middleware";
 import authorizationRoute from "../routes/authorization.route";
 import usersRoutes from "../routes/usersRoute";
 import welcome  from "../routes/welcome";
+import jwtAuthenticationMiddleware from "../middlewares/jwt-authentication.middleware";
 
 
 const app = express()
@@ -14,12 +14,15 @@ app.use(express.urlencoded({extended:true}))
 
 // configurações de rotas
 app.use(welcome)
-app.use(bearerAuthenticationMiddleware,usersRoutes)
 app.use(authorizationRoute)
+
+app.use(jwtAuthenticationMiddleware)
+app.use(usersRoutes)
+
 
 
 // configuracao dos handler de ERRO
-app.use(erroHendler)
+// app.use(erroHendler)
 
 // exportando nosso servidor
 export { app };

@@ -8,6 +8,8 @@ function erroHendler(err:any,req:Request,res:Response,next:NextFunction){
    if( err instanceof DatabaseError){
       res.sendStatus(StatusCodes.BAD_REQUEST)
    }else if(err instanceof ForbiddenError){
+      console.log("ok3");
+      
       res.sendStatus(StatusCodes.FORBIDDEN)
       
    }else{
